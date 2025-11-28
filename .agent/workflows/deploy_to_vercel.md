@@ -48,19 +48,25 @@ Se você não quiser criar um repositório no GitHub agora, pode usar a linha de
 
 Essa opção é melhor para manter o histórico e fazer deploys automáticos a cada alteração.
 
-1.  **Inicialize o Git** (se ainda não fez):
-    ```bash
-    git init
-    git add .
-    git commit -m "Primeiro commit"
-    ```
+1.  **Repositório Local já Inicializado**:
+    Já rodei os comandos `git init`, `git add` e `git commit` para você. O repositório local está pronto.
 
 2.  **Crie um repositório no GitHub**:
     *   Vá em [github.com/new](https://github.com/new).
-    *   Dê um nome ao repositório.
-    *   Siga as instruções para "push an existing repository".
+    *   Dê um nome ao repositório (ex: `obo-dashboard`).
+    *   **Não** marque "Initialize with README" ou .gitignore (já temos isso).
+    *   Clique em **Create repository**.
 
-3.  **Conecte na Vercel**:
+3.  **Conecte e Envie o Código**:
+    Copie os comandos que aparecem na seção **"…or push an existing repository from the command line"** e rode no seu terminal.
+    Geralmente são estes:
+    ```bash
+    git remote add origin https://github.com/SEU_USUARIO/NOME_DO_REPO.git
+    git branch -M main
+    git push -u origin main
+    ```
+
+4.  **Conecte na Vercel**:
     *   Acesse [vercel.com/new](https://vercel.com/new).
     *   Clique em **"Import"** ao lado do seu repositório do GitHub.
     *   Nas configurações de "Build and Output Settings", o Vercel já deve detectar `Vite` automaticamente.
