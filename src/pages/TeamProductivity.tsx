@@ -65,10 +65,13 @@ export function TeamProductivity() {
         });
     });
 
-    const data = Object.values(memberStats).map(stat => ({
-        ...stat,
-        completionRate: stat.total > 0 ? Math.round((stat.completed / stat.total) * 100) : 0
-    })).sort((a, b) => b.completed - a.completed);
+    const data = Object.values(memberStats)
+        .filter(stat => !['Obo Studio', 'Dudu Oliveira', 'Sem dono', 'Unassigned'].includes(stat.name))
+        .map(stat => ({
+            ...stat,
+            completionRate: stat.total > 0 ? Math.round((stat.completed / stat.total) * 100) : 0
+        }))
+        .sort((a, b) => b.completed - a.completed);
 
     // Radar Chart Data (Client Focus for Top Performer)
     const topPerformer = data[0];
@@ -166,6 +169,48 @@ export function TeamProductivity() {
                         </div>
                     </CardContent>
                 </Card>
+            </div>
+
+            {/* Clientes x Colaborador Section */}
+            <div>
+                <h3 className="text-2xl font-bold tracking-tight text-white mb-4">Clientes x Colaborador</h3>
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                    {data.map((member) => {
+                        // Sort clients by task count for this member
+                        const memberClients = Object.entries(member.clients)
+                            .sort(([, a], [, b]) => b - a);
+
+                        return (
+                            <Card key={member.name} className="bg-surface/50 border-border h-full">
+                                <CardHeader className="pb-2">
+                                    <CardTitle className="flex items-center gap-2 text-lg">
+                                        <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs">
+                                            {member.name.split(' ').map(n => n[0]).join('').substring(0, 2)}
+                                        </div>
+                                        {member.name}
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="space-y-3">
+                                        {memberClients.length > 0 ? (
+                                            memberClients.map(([clientName, count]) => (
+                                                <div key={clientName} className="flex items-center justify-between text-sm">
+                                                    <span className="text-muted-foreground truncate max-w-[70%]">{clientName}</span>
+                                                    <div className="flex items-center gap-2">
+                                                        <span className="font-medium text-white">{count}</span>
+                                                        <span className="text-xs text-muted-foreground">tarefas</span>
+                                                    </div>
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="text-sm text-muted-foreground italic">Nenhum cliente atribuído</div>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        );
+                    })}
+                </div>
             </div>
 
             {/* Detailed Metrics Table */}
