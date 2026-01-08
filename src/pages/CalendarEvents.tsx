@@ -13,7 +13,7 @@ export function CalendarEvents() {
 
             <div className="flex-1 bg-surface border border-border rounded-lg overflow-hidden h-[600px] shadow-sm">
                 <iframe
-                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBelem&showPrint=0&src=ZWR1YXJkby5hZ3VpYXI3MEBnbWFpbC5jb20&color=%232952a3"
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBelem&showPrint=0&src=ZWR1YXJkby5hZ3VpYXI3MEBnbWFpbC5jb20&src=Y2EwMjA5ODNiZjRhZDE0YWVkZTA3ZTJkZjRmZTUzZGI2NGU2MzZmNzA2NzQ4ZTI0M2Q1NDQ2NjRjZTI1YmNlNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&color=%232952a3&color=%23D81B60"
                     style={{ borderWidth: 0 }}
                     width="100%"
                     height="100%"
