@@ -10,12 +10,14 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+        return localStorage.getItem('isAuthenticated') === 'true';
+    });
 
     useEffect(() => {
-        // Check local storage on mount
+        // Keep checking purely as a backup or for other side effects if needed
         const storedAuth = localStorage.getItem('isAuthenticated');
-        if (storedAuth === 'true') {
+        if (storedAuth === 'true' && !isAuthenticated) {
             setIsAuthenticated(true);
         }
     }, []);

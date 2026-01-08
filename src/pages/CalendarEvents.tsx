@@ -1,5 +1,4 @@
-import { Calendar, ExternalLink } from 'lucide-react';
-import { Card, CardContent } from '../components/ui/Card';
+import { Calendar } from 'lucide-react';
 
 export function CalendarEvents() {
     return (
@@ -12,33 +11,16 @@ export function CalendarEvents() {
                 <p className="text-muted-foreground">Acesse sua agenda do Google Calendar</p>
             </div>
 
-            <div className="flex justify-center pt-10">
-                <Card className="w-full max-w-md bg-surface border-border">
-                    <CardContent className="flex flex-col items-center text-center p-8 space-y-6">
-                        <div className="p-4 bg-surfaceHighlight rounded-full">
-                            <Calendar className="h-12 w-12 text-primary" />
-                        </div>
-
-                        <div className="space-y-2">
-                            <h3 className="text-xl font-bold text-foreground">Google Calendar</h3>
-                            <p className="text-muted-foreground">
-                                Clique no botão abaixo para acessar sua agenda no Google Calendar
-                            </p>
-                        </div>
-
-                        <a
-                            href="https://calendar.google.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full"
-                        >
-                            <button className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 transition-colors">
-                                <ExternalLink className="h-5 w-5" />
-                                Abrir Google Calendar
-                            </button>
-                        </a>
-                    </CardContent>
-                </Card>
+            <div className="flex-1 bg-surface border border-border rounded-lg overflow-hidden h-[600px] shadow-sm">
+                <iframe
+                    src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FBelem&showPrint=0&src=ZWR1YXJkby5hZ3VpYXI3MEBnbWFpbC5jb20&color=%232952a3"
+                    style={{ borderWidth: 0 }}
+                    width="100%"
+                    height="100%"
+                    frameBorder="0"
+                    scrolling="no"
+                    title="Google Calendar"
+                ></iframe>
             </div>
         </div>
     );
